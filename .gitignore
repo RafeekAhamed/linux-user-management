@@ -1,0 +1,16 @@
+# Temporary files
+
+*.tmp
+*.swp
+*~
+
+# Operating system files
+
+.DS_Store
+Thumbs.db
+
+# Temporary cron test logs
+
+cron_test.log
+cron_test_report.log
+cron_minute_test.log
