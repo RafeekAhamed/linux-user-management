@@ -53,15 +53,15 @@ system directories require appropriate administrative privileges.
 
 ## Technologies Used
 
-  Technology                             Purpose
-  -------------------------------------- -------------------------------------------------
-  Linux / Ubuntu                         Operating system and administration environment
-  Bash                                   Automation and report generation
-  `useradd`, `usermod`, `id`, `getent`   User and group administration
-  `chmod`, `chown`, `ls`                 Ownership and standard permissions
-  `getfacl`, `setfacl`                   ACL inspection and configuration
-  Cron                                   Scheduled execution
-  Git and GitHub                         Version control and project documentation
+| Technology | Purpose |
+|---|---|
+| Linux / Ubuntu | Operating system and administration environment |
+| Bash | Automation and report generation |
+| `useradd`, `usermod`, `id`, `getent` | User and group administration |
+| `chmod`, `chown`, `ls` | Ownership and standard permissions |
+| `getfacl`, `setfacl` | ACL inspection and configuration |
+| Cron | Scheduled execution |
+| Git and GitHub | Version control and project documentation |
 
 ## Architecture and Directory Layout
 
@@ -258,19 +258,11 @@ and its execution log to:
 
 The project uses the following test identities:
 
-  -----------------------------------------------------------------------
-  Account                 Purpose                 Group
-  ----------------------- ----------------------- -----------------------
-  `developer1`            Development account and `devops`
-                          ACL write test          
-
-  `developer2`            Development account and `devops`
-                          ACL read test           
-
-  `acltester`             Temporary               Not a member of
-                          unauthorized-access     `devops`
-                          test account            
-  -----------------------------------------------------------------------
+| Account | Purpose | Group |
+|---|---|---|
+| `developer1` | Development account and ACL write test | `devops` |
+| `developer2` | Development account and ACL read test | `devops` |
+| `acltester` | Temporary unauthorized-access test account | Not a member of `devops` |
 
 Useful commands:
 
@@ -320,9 +312,12 @@ The exact mode may differ depending on the ACL mask and your chosen
 access policy. Verify actual permissions instead of assuming that they
 match this table.
 
-Permission reference: - `r` = read - `w` = write - `x` = execute; on
-directories, it also permits traversal - `2` in a directory mode such as
-`2770` = setgid
+Permission reference:
+
+- `r` = read.
+- `w` = write.
+- `x` = execute; on directories, it also permits traversal.
+- `2` in a directory mode such as `2770` enables setgid.
 
 ## Access Control Lists (ACLs)
 
@@ -447,8 +442,9 @@ ran. Run the script again to refresh it after relevant system changes.
 
 ## Scheduled Automation with Cron
 
-The current user crontab is configured to run the report every day at
-03:30 according to the system's configured timezone.
+The intended user-crontab schedule is to run the report every day at
+03:30 according to the system's configured timezone. Confirm the live
+configuration with `crontab -l` before relying on this schedule.
 
 ### Current cron entry
 
@@ -623,26 +619,19 @@ permissions on every parent directory.
 Store evidence images in the repository's `screenshots/` directory. Use
 the filenames below only when the corresponding image actually exists.
 
-  -----------------------------------------------------------------------
-  Suggested filename                  Evidence
-  ----------------------------------- -----------------------------------
-  `01-user-group-management.png`      User accounts and `devops` group
-                                      membership
-
-  `02-directory-permissions.png`      Directory ownership and mode bits
-
-  `03-acl-configuration.png`          `getfacl` output
-
-  `04-automated-report.png`           Generated report and success log
-
-  `05-cl-unauthorized-access.png`    Unauthorized access denied
-
-  `06-github-project.png`             GitHub repository and README
-  -----------------------------------------------------------------------
+| Suggested filename | Evidence |
+|---|---|
+| `01-user-group-management.png` | User accounts and `devops` group membership |
+| `02-directory-permissions.png` | Directory ownership and mode bits |
+| `03-acl-configuration.png` | `getfacl` output |
+| `04-automated-report.png` | Generated report and success log |
+| `05-acl-unauthorized-access.png` | Unauthorized access denied |
+| `06-github-project.png` | GitHub repository and README |
 
 For ACL evidence, remove test accounts and files after capturing
 screenshots. Never include passwords, access tokens, private keys, or
-other secrets in screenshots.
+other secrets in screenshots. Keep only screenshot files that actually
+exist in the repository, and update this table if filenames change.
 
 ## Key Learning Outcomes
 
